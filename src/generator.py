@@ -1,5 +1,5 @@
-from parser import Parser
-from graph import Graph
+from src.parser import Parser
+from src.graph import Graph
 import random
 
 class Generator:

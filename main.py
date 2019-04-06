@@ -1,4 +1,4 @@
-from generator import Generator
+from src.generator import Generator
 import sys
 
 filename = sys.argv[1]
