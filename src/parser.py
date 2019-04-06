@@ -78,3 +78,5 @@ class Parser:
 
                 #Move on to next line
                 curline = df.readline()
+
+            return tokens

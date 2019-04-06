@@ -7,12 +7,14 @@ class Vertex:
     edges: Map of edges which have this vertex as a source to frequency (Vertex:Int)
     term_freq: Number of times this vertex terminates a sentence
     start_freq: Number of times this vertex starts a sentence
+    total_edge_weight: total of weights of outgoing edges
     """
     def __init__(self, word):
         self.word = word
         self.edges = defaultdict(lambda : 0)
         self.term_freq = 0
         self.start_freq = 0
+        self.total_edge_weight = 0
 
         """
         If you are more concerned about time than space, you may wish to
@@ -56,7 +58,7 @@ class Graph:
     def create_graph(self):
 
         #Parse the tokens into graph
-        for token in tokens:
+        for token in self.tokens:
             self.starts += int(token.start)
             self.terms += int(token.term)
 
@@ -77,4 +79,6 @@ class Graph:
                 self.vertices[token.word] = new_vertex
 
             #Add to edge list
-            self.vertices[token.prev].edges[self.vertices[token.word]] += 1
+            if (not token.start):
+                self.vertices[token.prev].edges[self.vertices[token.word]] += 1
+                self.vertices[token.prev].total_edge_weight += 1
