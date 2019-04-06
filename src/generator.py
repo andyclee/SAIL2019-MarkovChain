@@ -28,25 +28,23 @@ class Generator:
 
     def gen_next_word(self, curr_word):
         '''Given a graph and a current word, randomly pick a next word'''
-        curr_vertex = self.graph.vertices[curr_word]
-        if curr_vertex.total_edge_weight == 0:
-            return self.WORD_FAILURE
-        idx = random.randint(0, curr_vertex.total_edge_weight)
-        counter = 0
-        for key, value in curr_vertex.edges.items(): 
-            counter += value
-            if counter >= idx:
-                return key.word
+        # curr_vertex = get a reference to the current vertex
+        # words might have no outgoing edges, you may need to check total_edge_weight
 
-        return self.WORD_FAILURE
+        # idx = random.randint(0, curr_vertex.total_edge_weight)
+        # counter = 0
+        # for key, value in curr_vertex.edges.items(): 
+        #     counter += value
+        #     if counter >= idx:
+        #         return key.word
 
     def stop(self, curr_word):
         '''Given a current word, randomly decide whether or not we should
         stop'''
-        curr_vertex = self.graph.vertices[curr_word]
-        stop_chance = curr_vertex.term_freq / self.graph.terms
-        choice = random.random()
-        return (choice <= stop_chance)
+        # get a reference to the current vertex
+        # calculate the chance this word terminates a sentence
+        # generate a random probability (hint, random.random() may be useful)
+        # return a boolean (True or False) saying whether or not the word should stop
 
     def gen_sentence(self):
         '''Generate a sentence given a graph representing a Markov chain'''
