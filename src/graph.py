@@ -8,6 +8,7 @@ class Vertex:
     term_freq: Number of times this vertex terminates a sentence
     start_freq: Number of times this vertex starts a sentence
     total_edge_weight: total of weights of outgoing edges
+    total_freq: the number of times this word appears at all
     """
     def __init__(self, word):
         self.word = word
@@ -15,6 +16,7 @@ class Vertex:
         self.term_freq = 0
         self.start_freq = 0
         self.total_edge_weight = 0
+        self.total_freq = 0
 
         """
         If you are more concerned about time than space, you may wish to
@@ -82,3 +84,5 @@ class Graph:
             if (not token.start):
                 self.vertices[token.prev].edges[self.vertices[token.word]] += 1
                 self.vertices[token.prev].total_edge_weight += 1
+
+            self.vertices[token.word].total_freq += 1
